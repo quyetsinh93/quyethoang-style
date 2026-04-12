@@ -348,7 +348,7 @@ a {
 /* -------------------------------- */
 /* Services Section */
 .services-section {
-    padding: 80px 0 100px;
+    padding: 100px 0;
     background-color: #fff;
 }
 
@@ -506,9 +506,197 @@ a {
 }
 
 /* -------------------------------- */
+/* Benefits Split Layout & Slider */
+.benefits-split-layout {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-top: -30px;
+}
+
+.benefits-split-left {
+    flex: 1;
+}
+
+.benefits-split-right {
+    flex: 1.1;
+    position: relative;
+}
+
+.benefits-grid.vertical-stack {
+    grid-template-columns: 1fr;
+    border-top: none;
+    border-bottom: none;
+}
+
+.benefits-grid.vertical-stack .benefit-card {
+    padding: 40px 30px 40px 0;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(168, 130, 82, 0.2) !important;
+}
+
+.benefits-grid.vertical-stack .benefit-card:last-child {
+    border-bottom: none !important;
+}
+
+.benefits-grid.vertical-stack .benefit-card::before {
+    top: 20px;
+    right: 0px;
+    font-size: 80px;
+}
+
+.slider-wrapper {
+    position: relative;
+    max-width: 800px;
+    margin: 50px auto 0;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.img-base {
+    width: 100%;
+    display: block;
+}
+
+.img-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: block;
+    clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+
+.badge {
+    position: absolute;
+    top: 20px;
+    padding: 6px 12px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.badge-before { left: 20px; }
+.badge-after { right: 20px; }
+
+.slider-input {
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    width: 100%; height: 100%;
+    cursor: ew-resize;
+    opacity: 0;
+    z-index: 10;
+}
+
+.slider-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: var(--primary-gold);
+    pointer-events: none;
+    z-index: 5;
+    transform: translateX(-50%);
+}
+
+.slider-line .slider-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px; height: 40px;
+    background: var(--primary-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+/* -------------------------------- */
+/* Founder / About Me Section */
+.founder-section {
+    padding: 100px 0;
+    background-color: #fff;
+}
+
+.founder-layout {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+}
+
+.founder-image {
+    flex: 1;
+    position: relative;
+    max-width: 40%;
+}
+
+.founder-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 2px;
+    box-shadow: -20px 20px 0 rgba(168, 130, 82, 0.1);
+}
+
+.founder-content {
+    flex: 1;
+}
+
+.founder-text-wrapper {
+    position: relative;
+    margin-top: 30px;
+}
+
+.quote-mark {
+    position: absolute;
+    top: -25px;
+    left: -40px;
+    font-size: 80px;
+    color: rgba(168, 130, 82, 0.08);
+    z-index: 0;
+}
+
+.founder-text-wrapper p {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+}
+
+.founder-text-wrapper p.lead-text {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.founder-text-wrapper p.mission-text {
+    font-style: italic;
+    color: var(--heading-color);
+    font-weight: 500;
+    font-size: 18px;
+    border-left: 3px solid var(--primary-gold);
+    padding-left: 25px;
+    margin-top: 35px;
+}
+
+/* -------------------------------- */
 /* Contact Section */
 .contact-section {
-    padding: 120px 0;
+    padding: 100px 0;
     position: relative;
     background-size: cover;
     background-position: center;
@@ -631,14 +819,17 @@ a {
 
 /* Responsive */
 @media (max-width: 900px) {
-    .split-layout, .contact-container { flex-direction: column; }
-    .services-grid, .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    .split-layout, .contact-container, .founder-layout, .benefits-split-layout { flex-direction: column; }
+    .founder-image { max-width: 100%; margin-bottom: 30px; }
+    .benefits-split-right { width: 100%; margin-top: 40px; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
     .about-images { width: 100%; height: 600px; margin-top: 40px; }
     .hero .headline { font-size: 42px; }
 }
 
 @media (max-width: 600px) {
-    .services-grid, .benefits-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
     .hero .headline { font-size: 32px; }
     .nav-links { display: none; }
+    .slider-wrapper { margin-top: 20px; }
 }

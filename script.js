@@ -46,3 +46,18 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+// Image Comparison Slider
+const sliderInput = document.getElementById('sliderInput');
+const imgOverlay = document.getElementById('imgOverlay');
+const sliderLine = document.getElementById('sliderLine');
+
+if (sliderInput) {
+    sliderInput.addEventListener('input', (e) => {
+        const sliderValue = e.target.value;
+        // Update the clip-path
+        imgOverlay.style.clipPath = `polygon(0 0, ${sliderValue}% 0, ${sliderValue}% 100%, 0 100%)`;
+        // Move the line
+        sliderLine.style.left = `${sliderValue}%`;
+    });
+}
