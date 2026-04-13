@@ -833,10 +833,29 @@ a {
     .hero .headline { font-size: 32px; }
     .section-title { font-size: 32px; }
     .section-subtitle { font-size: 20px; }
-    .about-note { font-size: 24px; padding: 0 15px;}
+    .about-images { 
+        height: auto; 
+        display: flex;
+        align-items: flex-start;
+        gap: 15px; 
+    }
+    .img-wrapper {
+        position: relative;
+        width: 50% !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+    }
+    .img-2 {
+        margin-top: 40px;
+    }
+    .about-note { 
+        font-size: 24px; 
+        padding: 0 15px;
+        margin-top: 40px; 
+    }
     .nav-links { display: none; }
     .slider-wrapper { margin-top: 20px; }
-    .about-images { height: 380px; }
     .benefits-grid.vertical-stack .benefit-card { padding: 30px 0 !important; }
     .benefits-grid.vertical-stack .benefit-card::before { top: 0px; font-size: 60px; right: 0; }
     .contact-container { gap: 30px; }
