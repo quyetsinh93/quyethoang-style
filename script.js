@@ -80,13 +80,20 @@ if (form) {
         
         btnSubmit.disabled = true;
         btnSubmit.innerText = "Đang gửi dữ liệu...";
+
+        // Đóng gói dữ liệu dạng URLSearchParams để Google Apps Script đọc được
+        const params = new URLSearchParams();
+        params.append("Họ_Tên", document.getElementById('name').value);
+        params.append("Số_Điện_Thoại", document.getElementById('phone').value);
+        params.append("Email_Liên_Hệ", document.getElementById('email').value);
+        params.append("Vấn_Đề_Gặp_Phải", document.getElementById('message').value);
         
         fetch(scriptURL, { 
             method: 'POST', 
-            body: new FormData(form),
+            body: params,
             mode: 'no-cors'
         })
-        .then(response => {
+        .then(() => {
             alert('Tuyệt vời! Thông tin của anh em đã được ghi nhận. Tôi sẽ liên hệ trong thời gian sớm nhất!');
             form.reset();
             btnSubmit.disabled = false;
