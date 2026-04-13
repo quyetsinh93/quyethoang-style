@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Style Men - Định Hình Phong Cách Nam Giới</title>
+    <title>Quyet Hoang - Personal Style Consultant</title>
+    
+    <!-- Open Graph / Meta Tags (Làm đẹp Link khi chia sẻ) -->
+    <meta property="og:title" content="Quyet Hoang - Định Hình Phong Cách Phái Mạnh">
+    <meta property="og:description" content="Khám phá và hoàn thiện phiên bản tốt nhất của chính anh em. Đặt lịch tư vấn phong cách 1:1 ngay hôm nay!">
+    <meta property="og:image" content="https://quyetsinh.com/assets/images/hero.png">
+    <meta property="og:url" content="https://quyetsinh.com/">
+    <meta property="og:type" content="website">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -232,26 +239,26 @@
             
             <div class="contact-form-wrapper">
                 <h3 class="form-title">Đăng Ký Tư Vấn</h3>
-                <form class="appointment-form">
+                <form class="appointment-form" id="consultingForm">
                     <div class="form-row">
                         <div class="input-group">
-                            <input type="text" id="name" placeholder="Tên anh em" required>
+                            <input type="text" name="Họ_Tên" id="name" placeholder="Tên anh em" required>
                         </div>
                         <div class="input-group">
-                            <input type="tel" id="phone" placeholder="Phone / Zalo" required>
+                            <input type="tel" name="Số_Điện_Thoại" id="phone" placeholder="Phone / Zalo" required>
                         </div>
                     </div>
                     <div class="form-row single-row">
                         <div class="input-group">
-                            <input type="email" id="email" placeholder="Email" required>
+                            <input type="email" name="Email_Liên_Hệ" id="email" placeholder="Email" required>
                         </div>
                     </div>
                     <div class="form-row single-row">
                         <div class="input-group border-bottom">
-                            <textarea id="message" placeholder="Vấn đề lớn nhất anh em gặp phải" rows="2" required></textarea>
+                            <textarea name="Vấn_Đề_Gặp_Phải" id="message" placeholder="Vấn đề lớn nhất anh em gặp phải" rows="2" required></textarea>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary full-width" onclick="alert('Cảm ơn anh em đã đăng ký. Tôi sẽ liên hệ trong 01 giờ đồng hồ tới!')">ĐẶT LỊCH HẸN VỚI TÔI</button>
+                    <button type="submit" class="btn btn-primary full-width">ĐẶT LỊCH HẸN VỚI TÔI</button>
                 </form>
             </div>
         </div>
