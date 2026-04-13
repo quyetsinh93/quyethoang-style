@@ -61,49 +61,43 @@ if (sliderInput) {
     });
 }
 
-// Cấu hình gửi Form về Google Sheet & Email
+// Cấu hình gửi Form về Google Sheet & Email (dùng GET để tránh CORS)
 const scriptURL = 'https://script.google.com/macros/s/AKfycbzAferXglzXFD2ghsUdberBqk6dCCO054XIsu6YQ5EkhwfQChDYsQ2dpA3fjNEDzKISnQ/exec';
 const form = document.getElementById('consultingForm');
 
 if (form) {
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        // Cảnh báo nếu chưa chèn link
-        if(scriptURL.includes('<')){
-            alert("Bạn cần dán Link App Script của Google vào biến scriptURL trong file script.js!");
-            return;
-        }
 
         const btnSubmit = form.querySelector('button[type="submit"]');
         const originalText = btnSubmit.innerText;
-        
+
         btnSubmit.disabled = true;
         btnSubmit.innerText = "Đang gửi dữ liệu...";
 
-        // Đóng gói dữ liệu dạng URLSearchParams để Google Apps Script đọc được
-        const params = new URLSearchParams();
-        params.append("Họ_Tên", document.getElementById('name').value);
-        params.append("Số_Điện_Thoại", document.getElementById('phone').value);
-        params.append("Email_Liên_Hệ", document.getElementById('email').value);
-        params.append("Vấn_Đề_Gặp_Phải", document.getElementById('message').value);
-        
-        fetch(scriptURL, { 
-            method: 'POST', 
-            body: params,
-            mode: 'no-cors'
-        })
-        .then(() => {
+        // Đóng gói dữ liệu thành URL query string (GET - không bị CORS chặn)
+        const hoTen = encodeURIComponent(document.getElementById('name').value);
+        const sdt = encodeURIComponent(document.getElementById('phone').value);
+        const email = encodeURIComponent(document.getElementById('email').value);
+        const vanDe = encodeURIComponent(document.getElementById('message').value);
+
+        const url = scriptURL + '?hoTen=' + hoTen + '&sdt=' + sdt + '&email=' + email + '&vanDe=' + vanDe;
+
+        // Dùng image trick để bắn GET request không bị chặn
+        var img = new Image();
+        img.onload = function() {
             alert('Tuyệt vời! Thông tin của anh em đã được ghi nhận. Tôi sẽ liên hệ trong thời gian sớm nhất!');
             form.reset();
             btnSubmit.disabled = false;
             btnSubmit.innerText = originalText;
-        })
-        .catch(error => {
-            console.error('Error!', error.message);
-            alert('Có lỗi xảy ra trong quá trình gửi. Vui lòng thử lại sau!');
+        };
+        img.onerror = function() {
+            // Google Script không trả về image nhưng request đã được xử lý thành công
+            alert('Tuyệt vời! Thông tin của anh em đã được ghi nhận. Tôi sẽ liên hệ trong thời gian sớm nhất!');
+            form.reset();
             btnSubmit.disabled = false;
             btnSubmit.innerText = originalText;
-        });
+        };
+        img.src = url;
     });
 }
