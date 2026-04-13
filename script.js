@@ -57,7 +57,42 @@ if (sliderInput) {
         const sliderValue = e.target.value;
         // Update the clip-path
         imgOverlay.style.clipPath = `polygon(0 0, ${sliderValue}% 0, ${sliderValue}% 100%, 0 100%)`;
-        // Move the line
         sliderLine.style.left = `${sliderValue}%`;
+    });
+}
+
+// Cấu hình gửi Form về Google Sheet & Email
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzAferXglzXFD2ghsUdberBqk6dCCO054XIsu6YQ5EkhwfQChDYsQ2dpA3fjNEDzKISnQ/exec';
+const form = document.getElementById('consultingForm');
+
+if (form) {
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        // Cảnh báo nếu chưa chèn link
+        if(scriptURL.includes('<')){
+            alert("Bạn cần dán Link App Script của Google vào biến scriptURL trong file script.js!");
+            return;
+        }
+
+        const btnSubmit = form.querySelector('button[type="submit"]');
+        const originalText = btnSubmit.innerText;
+        
+        btnSubmit.disabled = true;
+        btnSubmit.innerText = "Đang gửi dữ liệu...";
+        
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            alert('Tuyệt vời! Thông tin của anh em đã được ghi nhận. Tôi sẽ liên hệ trong thời gian sớm nhất!');
+            form.reset();
+            btnSubmit.disabled = false;
+            btnSubmit.innerText = originalText;
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            alert('Có lỗi xảy ra trong quá trình gửi. Vui lòng thử lại sau!');
+            btnSubmit.disabled = false;
+            btnSubmit.innerText = originalText;
+        });
     });
 }
