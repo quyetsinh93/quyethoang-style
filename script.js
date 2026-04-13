@@ -81,7 +81,11 @@ if (form) {
         btnSubmit.disabled = true;
         btnSubmit.innerText = "Đang gửi dữ liệu...";
         
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        fetch(scriptURL, { 
+            method: 'POST', 
+            body: new FormData(form),
+            mode: 'no-cors'
+        })
         .then(response => {
             alert('Tuyệt vời! Thông tin của anh em đã được ghi nhận. Tôi sẽ liên hệ trong thời gian sớm nhất!');
             form.reset();
