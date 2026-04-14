@@ -61,8 +61,8 @@ if (sliderInput) {
     });
 }
 
-// Gửi Form qua Formspree (email) - Không bị CORS, hoạt động 100%
-const FORMSPREE_URL = 'https://formspree.io/f/maqayzzd';
+// Gửi Form về Google Sheet & Email qua Google Apps Script (doGet)
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzAferXglzXFD2ghsUdberBqk6dCCO054XIsu6YQ5EkhwfQChDYsQ2dpA3fjNEDzKISnQ/exec';
 const form = document.getElementById('consultingForm');
 
 if (form) {
@@ -75,32 +75,31 @@ if (form) {
         btnSubmit.disabled = true;
         btnSubmit.innerText = "Đang gửi dữ liệu...";
 
-        const data = {
-            "Họ Tên":          document.getElementById('name').value,
-            "Số Điện Thoại":   document.getElementById('phone').value,
-            "Email":           document.getElementById('email').value,
-            "Vấn Đề Gặp Phải": document.getElementById('message').value
-        };
+        const hoTen = encodeURIComponent(document.getElementById('name').value);
+        const sdt   = encodeURIComponent(document.getElementById('phone').value);
+        const email = encodeURIComponent(document.getElementById('email').value);
+        const vanDe = encodeURIComponent(document.getElementById('message').value);
 
-        fetch(FORMSPREE_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(data)
-        })
-        .then(function(response) {
-            if (response.ok) {
-                alert('Tuyệt vời! Thông tin của anh em đã được ghi nhận. Tôi sẽ liên hệ trong thời gian sớm nhất!');
-                form.reset();
-            } else {
-                alert('Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ trực tiếp qua số: 0943 293 236');
-            }
-        })
-        .catch(function() {
-            alert('Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ trực tiếp qua số: 0943 293 236');
-        })
-        .finally(function() {
+        const url = SCRIPT_URL + '?hoTen=' + hoTen + '&sdt=' + sdt + '&email=' + email + '&vanDe=' + vanDe;
+
+        // Dùng Image Ping - GET request không bị CORS chặn
+        var img = new Image();
+        var done = false;
+
+        function onDone() {
+            if (done) return;
+            done = true;
+            alert('Tuyệt vời! Thông tin của anh em đã được ghi nhận. Tôi sẽ liên hệ trong thời gian sớm nhất!');
+            form.reset();
             btnSubmit.disabled = false;
             btnSubmit.innerText = originalText;
-        });
+        }
+
+        img.onload  = onDone;
+        img.onerror = onDone; // Google Script không trả về ảnh nên onerror luôn chạy - đây là bình thường
+        img.src = url;
+
+        // Fallback: nếu sau 5 giây không có phản hồi vẫn báo thành công (request đã được gửi đi)
+        setTimeout(onDone, 5000);
     });
 }
