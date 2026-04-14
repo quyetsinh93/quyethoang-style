@@ -61,8 +61,8 @@ if (sliderInput) {
     });
 }
 
-// Cấu hình gửi Form về Google Sheet & Email (dùng GET để tránh CORS)
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzAferXglzXFD2ghsUdberBqk6dCCO054XIsu6YQ5EkhwfQChDYsQ2dpA3fjNEDzKISnQ/exec';
+// Gửi Form qua Formspree (email) - Không bị CORS, hoạt động 100%
+const FORMSPREE_URL = 'https://formspree.io/f/maqayzzd';
 const form = document.getElementById('consultingForm');
 
 if (form) {
@@ -75,29 +75,32 @@ if (form) {
         btnSubmit.disabled = true;
         btnSubmit.innerText = "Đang gửi dữ liệu...";
 
-        // Đóng gói dữ liệu thành URL query string (GET - không bị CORS chặn)
-        const hoTen = encodeURIComponent(document.getElementById('name').value);
-        const sdt = encodeURIComponent(document.getElementById('phone').value);
-        const email = encodeURIComponent(document.getElementById('email').value);
-        const vanDe = encodeURIComponent(document.getElementById('message').value);
+        const data = {
+            "Họ Tên":          document.getElementById('name').value,
+            "Số Điện Thoại":   document.getElementById('phone').value,
+            "Email":           document.getElementById('email').value,
+            "Vấn Đề Gặp Phải": document.getElementById('message').value
+        };
 
-        const url = scriptURL + '?hoTen=' + hoTen + '&sdt=' + sdt + '&email=' + email + '&vanDe=' + vanDe;
-
-        // Dùng image trick để bắn GET request không bị chặn
-        var img = new Image();
-        img.onload = function() {
-            alert('Tuyệt vời! Thông tin của anh em đã được ghi nhận. Tôi sẽ liên hệ trong thời gian sớm nhất!');
-            form.reset();
+        fetch(FORMSPREE_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(function(response) {
+            if (response.ok) {
+                alert('Tuyệt vời! Thông tin của anh em đã được ghi nhận. Tôi sẽ liên hệ trong thời gian sớm nhất!');
+                form.reset();
+            } else {
+                alert('Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ trực tiếp qua số: 0943 293 236');
+            }
+        })
+        .catch(function() {
+            alert('Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ trực tiếp qua số: 0943 293 236');
+        })
+        .finally(function() {
             btnSubmit.disabled = false;
             btnSubmit.innerText = originalText;
-        };
-        img.onerror = function() {
-            // Google Script không trả về image nhưng request đã được xử lý thành công
-            alert('Tuyệt vời! Thông tin của anh em đã được ghi nhận. Tôi sẽ liên hệ trong thời gian sớm nhất!');
-            form.reset();
-            btnSubmit.disabled = false;
-            btnSubmit.innerText = originalText;
-        };
-        img.src = url;
+        });
     });
 }
