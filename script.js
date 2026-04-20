@@ -244,3 +244,47 @@ function initChat() {
     addMessage(chatScript.greeting, 'bot');
     showOptions(chatScript.menu);
 }
+
+/* =========================================
+   SePay Checkout Logic
+   ========================================= */
+const checkoutForm = document.getElementById('checkoutForm');
+const checkoutContainer = document.getElementById('checkout-form-container');
+const qrContainer = document.getElementById('qr-container');
+const qrImage = document.getElementById('qr-image');
+const qrServiceName = document.getElementById('qr-service-name');
+
+if (checkoutForm) {
+    checkoutForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // 1. Fetch form info
+        const phone = document.getElementById('customerPhone').value;
+        const productSelect = document.getElementById('productSelect');
+        const amount = productSelect.options[productSelect.selectedIndex].value;
+        const serviceName = productSelect.options[productSelect.selectedIndex].text;
+        
+        // 2. Generate random order code
+        const orderId = 'DH' + Math.floor(Math.random() * 100000);
+        const description = phone + ' ' + orderId; 
+
+        // 3. Bank Info
+        const BANK_ACCOUNT = '66869 66869'; // TODO: Thay bằng số tài khoản thật của anh em
+        const BANK_NAME = 'VPBank'; // TODO: Thay bằng tên ngân hàng thật (VD: MBBank, Vietcombank)
+        
+        // 4. Generate QR link via SePay API
+        const qrUrl = `https://qr.sepay.vn/img?acc=${BANK_ACCOUNT}&bank=${BANK_NAME}&amount=${amount}&des=${encodeURIComponent(description)}`;
+        
+        // 5. Update UI: Hide form, show QR
+        qrImage.src = qrUrl;
+        qrServiceName.innerText = serviceName;
+        
+        checkoutContainer.style.display = 'none';
+        qrContainer.style.display = 'block';
+    });
+}
+
+function resetCheckout() {
+    qrContainer.style.display = 'none';
+    checkoutContainer.style.display = 'block';
+}
