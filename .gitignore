@@ -1,0 +1,19 @@
+# NuGet packages (không cần thiết)
+.nuget/
+
+# Secrets - không bao giờ commit lên Git
+.env
+resend_config.txt
+
+# Database
+brain.db
+
+# SQLite tools (binary)
+sqlite3.exe
+sqlite3_analyzer.exe
+sqldiff.exe
+sqlite.zip
+
+# Windows
+Thumbs.db
+desktop.ini

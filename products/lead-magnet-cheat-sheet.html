@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheat Sheet: 7 Công Thức Phối Đồ Đi Làm Không Cần Suy Nghĩ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #b8963e;
+            --gold-light: #d4af6a;
+            --dark: #1a1a1a;
+            --darker: #111111;
+            --text: #2c2c2c;
+            --light-bg: #faf9f7;
+            --border: #e8e0d0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #f0ede8;
+            color: var(--text);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .page {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 40px rgba(0,0,0,0.15);
+        }
+
+        /* === COVER === */
+        .cover {
+            background: var(--darker);
+            color: white;
+            padding: 70px 60px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 350px; height: 350px;
+            border-radius: 50%;
+            background: rgba(184, 150, 62, 0.08);
+        }
+
+        .cover::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; left: -60px;
+            width: 250px; height: 250px;
+            border-radius: 50%;
+            background: rgba(184, 150, 62, 0.06);
+        }
+
+        .cover-tag {
+            display: inline-block;
+            background: var(--gold);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 14px;
+            border-radius: 2px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .cover h1 {
+            font-size: 38px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cover h1 span {
+            color: var(--gold-light);
+        }
+
+        .cover-subtitle {
+            font-size: 16px;
+            color: rgba(255,255,255,0.6);
+            font-weight: 300;
+            max-width: 500px;
+            margin-bottom: 50px;
+        }
+
+        .cover-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .author-avatar {
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            background: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .author-name {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .author-title {
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* === INTRO === */
+        .intro-section {
+            background: var(--light-bg);
+            padding: 50px 60px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .intro-section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .intro-section p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .pain-points {
+            background: white;
+            border-left: 3px solid var(--gold);
+            padding: 20px 25px;
+            margin-top: 25px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .pain-points p {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        .pain-points p::before {
+            content: '→ ';
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .pain-points p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* === DAILY OUTFITS === */
+        .days-section {
+            padding: 50px 60px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-tag {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .day-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 100px 1fr;
+        }
+
+        .day-label {
+            background: var(--dark);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            gap: 5px;
+        }
+
+        .day-number {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: 0.5;
+        }
+
+        .day-name {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .day-icon {
+            font-size: 22px;
+            margin-top: 5px;
+        }
+
+        .day-content {
+            padding: 20px 25px;
+        }
+
+        .outfit-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .outfit-badge {
+            font-size: 10px;
+            background: var(--gold);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 2px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .outfit-formula {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .outfit-item {
+            background: var(--light-bg);
+            border: 1px solid var(--border);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #444;
+        }
+
+        .outfit-item.hero {
+            background: rgba(184, 150, 62, 0.1);
+            border-color: rgba(184, 150, 62, 0.3);
+            color: #7a5c10;
+            font-weight: 600;
+        }
+
+        .outfit-tip {
+            font-size: 13px;
+            color: #777;
+            font-style: italic;
+            border-top: 1px dashed var(--border);
+            padding-top: 10px;
+            margin-top: 5px;
+        }
+
+        /* === GOLDEN RULES === */
+        .rules-section {
+            background: var(--dark);
+            color: white;
+            padding: 50px 60px;
+        }
+
+        .rules-section .section-tag {
+            color: var(--gold-light);
+        }
+
+        .rules-section .section-header {
+            margin-bottom: 40px;
+            border-bottom-color: rgba(255,255,255,0.1);
+        }
+
+        .rules-section .section-header h2 {
+            color: white;
+        }
+
+        .rule-item {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .rule-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .rule-number {
+            width: 42px; height: 42px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 15px;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .rule-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: white;
+        }
+
+        .rule-body {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.7;
+        }
+
+        /* === CTA === */
+        .cta-section {
+            background: linear-gradient(135deg, #f9f4ec 0%, #fff 100%);
+            border-top: 3px solid var(--gold);
+            padding: 50px 60px;
+            text-align: center;
+        }
+
+        .cta-headline {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .cta-body {
+            color: #666;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            font-size: 15px;
+        }
+
+        .cta-upsell {
+            background: var(--dark);
+            color: white;
+            border-radius: 8px;
+            padding: 25px 35px;
+            display: inline-block;
+            text-align: left;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .cta-upsell-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .cta-upsell-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .cta-upsell-desc {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 15px;
+        }
+
+        .cta-price {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--gold-light);
+        }
+
+        .cta-price span {
+            font-size: 14px;
+            color: rgba(255,255,255,0.4);
+            font-weight: 300;
+            text-decoration: line-through;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--darker);
+            color: rgba(255,255,255,0.3);
+            font-size: 12px;
+        }
+
+        @media print {
+            body { background: white; }
+            .page { box-shadow: none; }
+            .day-card { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- COVER -->
+    <div class="cover">
+        <div class="cover-tag">Lead Magnet · Miễn Phí</div>
+        <h1>7 Công Thức Phối Đồ Đi Làm<br><span>Không Cần Suy Nghĩ</span></h1>
+        <p class="cover-subtitle">Cheat sheet dành cho anh em bận rộn. Nhìn vào là biết mặc gì sáng thứ 2 đến chủ nhật — chuyên nghiệp, chuẩn chỉnh, không cần chuyên gia.</p>
+        <div class="cover-author">
+            <div class="author-avatar">Q</div>
+            <div>
+                <div class="author-name">Quyet Hoang</div>
+                <div class="author-title">Personal Style Consultant · Men's Fashion</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="intro-section">
+        <h2>Nói thẳng vào vấn đề</h2>
+        <p>Tủ đồ có đồ, nhưng sáng nào cũng không biết mặc gì. Mua cái nào cũng thấy "ổn" nhưng ra đường lại thấy thiếu gì đó. Đứng trước gương 10 phút, cuối cùng vẫn mặc bộ cũ nhất.</p>
+        <p>Nếu bạn đang gặp một trong ba chuyện này:</p>
+        <div class="pain-points">
+            <p>Họp quan trọng mà không biết mặc gì cho "ra dáng sếp" mà không cứng nhắc</p>
+            <p>Hay mua đồ nhưng ít dùng vì không biết phối với cái gì</p>
+            <p>Muốn ăn mặc tốt nhưng không có thời gian suy nghĩ mỗi sáng</p>
+        </div>
+        <p style="margin-top: 20px;">Thì tài liệu này là thứ bạn cần. Không lý thuyết dài dòng — chỉ là 7 công thức cụ thể, áp dụng được ngay từ sáng mai.</p>
+    </div>
+
+    <!-- 7 OUTFITS -->
+    <div class="days-section">
+        <div class="section-header">
+            <div class="section-tag">Công thức mỗi ngày</div>
+            <h2>7 Bộ Đủ Dùng Cho Cả Tuần</h2>
+        </div>
+
+        <!-- THỨ 2 -->
+        <div class="day-card">
+            <div class="day-label">
+                <div class="day-number">Thứ</div>
+                <div class="day-name">2</div>
+                <div class="day-icon">⚡</div>
+            </div>
+            <div class="day-content">
+                <div class="outfit-title">
+                    Khởi đầu tuần mạnh mẽ
+                    <span class="outfit-badge">Họp + Văn phòng</span>
+                </div>
+                <div class="outfit-formula">
+                    <span class="outfit-item hero">Áo sơ mi trắng trơn</span>
+                    <span class="outfit-item">Quần âu xám nhạt</span>
+                    <span class="outfit-item">Giày derby đen</span>
+                    <span class="outfit-item">Thắt lưng đen</span>
+                </div>
+                <p class="outfit-tip">Bí mật: Trắng + Xám là combo "an toàn tuyệt đối" — không bao giờ lỗi mode, không bao giờ bị chê. Callar áo bỏ vào quần, cài đủ khuy.</p>
+            </div>
+        </div>
+
+        <!-- THỨ 3 -->
+        <div class="day-card">
+            <div class="day-label">
+                <div class="day-number">Thứ</div>
+                <div class="day-name">3</div>
+                <div class="day-icon">🤝</div>
+            </div>
+            <div class="day-content">
+                <div class="outfit-title">
+                    Gặp khách hàng / Đối tác
+                    <span class="outfit-badge">Business Casual</span>
+                </div>
+                <div class="outfit-formula">
+                    <span class="outfit-item hero">Polo navy cổ bẻ</span>
+                    <span class="outfit-item">Quần âu kem / be</span>
+                    <span class="outfit-item">Giày loafer nâu</span>
+                    <span class="outfit-item">Đồng hồ dây da</span>
+                </div>
+                <p class="outfit-tip">Navy Polo là "ace" của dân văn phòng hiện đại — không cứng như sơ mi nhưng cũng không hề xuề xòa. Gặp ai cũng được mà vẫn toát ra sự tự tin.</p>
+            </div>
+        </div>
+
+        <!-- THỨ 4 -->
+        <div class="day-card">
+            <div class="day-label">
+                <div class="day-number">Thứ</div>
+                <div class="day-name">4</div>
+                <div class="day-icon">🧠</div>
+            </div>
+            <div class="day-content">
+                <div class="outfit-title">
+                    Ngày tập trung làm việc
+                    <span class="outfit-badge">Smart Casual</span>
+                </div>
+                <div class="outfit-formula">
+                    <span class="outfit-item hero">Áo thun basic xám đậm</span>
+                    <span class="outfit-item">Chino be / camel</span>
+                    <span class="outfit-item">Sneaker trắng clean</span>
+                    <span class="outfit-item">Blazer xám nhạt (tùy chọn)</span>
+                </div>
+                <p class="outfit-tip">Ngày làm việc cần đầu óc thoải mái — áo thun basic + chino là combo thoải mái nhất mà vẫn nhìn gọn gàng. Thêm blazer vào nếu có cuộc họp chiều.</p>
+            </div>
+        </div>
+
+        <!-- THỨ 5 -->
+        <div class="day-card">
+            <div class="day-label">
+                <div class="day-number">Thứ</div>
+                <div class="day-name">5</div>
+                <div class="day-icon">💼</div>
+            </div>
+            <div class="day-content">
+                <div class="outfit-title">
+                    Presentation / Sự kiện chiều
+                    <span class="outfit-badge">Power Outfit</span>
+                </div>
+                <div class="outfit-formula">
+                    <span class="outfit-item hero">Sơ mi xanh nhạt</span>
+                    <span class="outfit-item">Quần âu xám đậm</span>
+                    <span class="outfit-item">Giày Oxford nâu</span>
+                    <span class="outfit-item">Cà vạt (tùy sự kiện)</span>
+                </div>
+                <p class="outfit-tip">Xanh nhạt + Xám đậm = combo cực kỳ ăn hình, trông chuyên nghiệp và thông minh. Đây là công thức được dùng nhiều nhất trong các buổi pitch và thuyết trình.</p>
+            </div>
+        </div>
+
+        <!-- THỨ 6 -->
+        <div class="day-card">
+            <div class="day-label">
+                <div class="day-number">Thứ</div>
+                <div class="day-name">6</div>
+                <div class="day-icon">🎉</div>
+            </div>
+            <div class="day-content">
+                <div class="outfit-title">
+                    Thứ 6 thư giãn (Casual Friday)
+                    <span class="outfit-badge">Relaxed Smart</span>
+                </div>
+                <div class="outfit-formula">
+                    <span class="outfit-item hero">Sơ mi overshirt xanh rêu</span>
+                    <span class="outfit-item">Jeans xanh trung</span>
+                    <span class="outfit-item">Giày da nâu đơn giản</span>
+                </div>
+                <p class="outfit-tip">Thứ 6 cho phép "thở" hơn. Overshirt để ngoài quần + jeans gọn gàng vẫn trông rất ngon mà lại thoải mái để cafe tối sau giờ làm. Không ai bắt bẻ gì được.</p>
+            </div>
+        </div>
+
+        <!-- THỨ 7 -->
+        <div class="day-card">
+            <div class="day-label">
+                <div class="day-number">Thứ</div>
+                <div class="day-name">7</div>
+                <div class="day-icon">☕</div>
+            </div>
+            <div class="day-content">
+                <div class="outfit-title">
+                    Cafe sáng / Gặp bạn bè
+                    <span class="outfit-badge">Weekend Elevated</span>
+                </div>
+                <div class="outfit-formula">
+                    <span class="outfit-item hero">Áo Henley / Polo trơn</span>
+                    <span class="outfit-item">Chino slim đen</span>
+                    <span class="outfit-item">Sneaker low trắng / đen</span>
+                </div>
+                <p class="outfit-tip">Weekend không cần gắng. Henley shirt hay Polo trơn + Chino đen là công thức "anh tây cuối tuần" — ta đây bình thường nhưng nhìn vẫn có style hẳn hoi.</p>
+            </div>
+        </div>
+
+        <!-- CHỦ NHẬT -->
+        <div class="day-card">
+            <div class="day-label">
+                <div class="day-number">Chủ</div>
+                <div class="day-name">Nhật</div>
+                <div class="day-icon">🌿</div>
+            </div>
+            <div class="day-content">
+                <div class="outfit-title">
+                    Đi ăn gia đình / Ngoài trời
+                    <span class="outfit-badge">Clean Minimal</span>
+                </div>
+                <div class="outfit-formula">
+                    <span class="outfit-item hero">Áo thun cổ tròn trắng / kem</span>
+                    <span class="outfit-item">Shorts/ Quần cargo gọn</span>
+                    <span class="outfit-item">Sandal da hoặc Sneaker</span>
+                    <span class="outfit-item">Mũ baseball (tùy chọn)</span>
+                </div>
+                <p class="outfit-tip">Chủ nhật là ngày sạc pin. Áo trắng clean + quần đơn giản = nhìn gọn, không nặng nề, thoải mái đi đâu cũng được từ chợ tới nhà hàng gia đình.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- GOLDEN RULES -->
+    <div class="rules-section">
+        <div class="section-header">
+            <div class="section-tag">Không cần nhớ nhiều</div>
+            <h2>3 Quy Tắc Vàng Để Không Bao Giờ "Lạc Đường"</h2>
+        </div>
+
+        <div class="rule-item">
+            <div class="rule-number">1</div>
+            <div>
+                <div class="rule-title">Tone-on-tone thì không bao giờ sai</div>
+                <div class="rule-body">Nếu không biết phối màu, cứ lấy một gam màu duy nhất (xám, navy, be, đen) rồi mặc đậm nhạt khác nhau. Ninety percent trường hợp là nhìn ổn ngay. Đừng cố phối 3-4 màu nếu chưa biết chắc.</div>
+            </div>
+        </div>
+
+        <div class="rule-item">
+            <div class="rule-number">2</div>
+            <div>
+                <div class="rule-title">Fit chuẩn hơn brand xịn</div>
+                <div class="rule-body">Một cái áo H&M vừa vặn nhìn đẹp hơn hẳn một cái áo Louis Vuitton rộng thùng thình. Vấn đề không phải ở nhãn hiệu — ở chỗ áo có vừa vai không, quần có ôm đùi đúng không. Đây là điều nhiều anh em hay bỏ qua nhất.</div>
+            </div>
+        </div>
+
+        <div class="rule-item">
+            <div class="rule-number">3</div>
+            <div>
+                <div class="rule-title">Giày và đồng hồ mới "chốt deal" cuối cùng</div>
+                <div class="rule-body">Người ta nhìn giày và tay bạn nhiều hơn bạn nghĩ. Bộ áo quần ổn + giày bẩn = tất cả công sức phối đồ đổ xuống sông xuống biển. Đánh giày trước khi ra khỏi nhà — thói quen 2 phút, tác động lớn.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <h2 class="cta-headline">Bước Tiếp Theo: Xây Tủ Đồ Đúng Gốc</h2>
+        <p class="cta-body">7 công thức trên chỉ hiệu quả khi bạn có đủ những món đồ cơ bản đúng chỗ. Nếu bạn muốn biết chính xác cần mua gì, tôi đã làm sẵn danh sách cho bạn rồi.</p>
+        <div class="cta-upsell">
+            <div class="cta-upsell-label">Tài liệu trả phí</div>
+            <div class="cta-upsell-title">Capsule Wardrobe Starter Kit: 20 Items Cốt Lõi Của Phái Mạnh</div>
+            <div class="cta-upsell-desc">Danh sách 20 món đồ xây nền tảng tủ đồ cho dân văn phòng, kèm hướng dẫn cách phối và gợi ý giá mua. Mua 20 món — phối được 50 kiểu.</div>
+            <div class="cta-price">199.000đ <span>500.000đ</span></div>
+        </div>
+    </div>
+
+    <div class="footer">© Quyet Hoang Personal Style Consultant · Tài liệu này được phát miễn phí. Vui lòng không bán lại.</div>
+
+</div>
+</body>
+</html>

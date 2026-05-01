@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[TEST] Giao Dịch Thử Nghiệm 2.000đ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Outfit', sans-serif; background: #0f1115; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .card { background: #1a1d24; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 40px; width: 100%; max-width: 420px; }
+        .badge { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #f87171; font-size: 11px; font-weight: 700; letter-spacing: 2px; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; display: inline-block; margin-bottom: 20px; }
+        h1 { font-size: 22px; font-weight: 700; margin-bottom: 5px; }
+        .sub { color: rgba(255,255,255,0.4); font-size: 14px; margin-bottom: 30px; }
+        .amount-box { background: rgba(184,150,62,0.08); border: 1px solid rgba(184,150,62,0.2); border-radius: 8px; padding: 15px 20px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
+        .amount-label { font-size: 13px; color: rgba(255,255,255,0.5); }
+        .amount-value { font-size: 24px; font-weight: 800; color: #d4af6a; }
+        label { display: block; font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 700; }
+        input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 13px 15px; color: white; font-family: 'Outfit', sans-serif; font-size: 15px; outline: none; box-sizing: border-box; margin-bottom: 18px; transition: border-color 0.3s; }
+        input:focus { border-color: #b8963e; }
+        button { width: 100%; background: #b8963e; color: #111; border: none; padding: 16px; border-radius: 8px; font-size: 15px; font-weight: 700; font-family: 'Outfit', sans-serif; cursor: pointer; transition: all 0.3s; }
+        button:hover { background: #d4af6a; }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+        #qr-view { display: none; text-align: center; }
+        .qr-box { background: #fff; padding: 15px; border-radius: 10px; display: inline-block; margin: 15px 0; }
+        .qr-box img { width: 200px; height: 200px; display: block; }
+        .order-tag { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 5px; }
+        .status { margin: 15px 0; font-size: 14px; font-weight: 600; color: #f59e0b; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .status.ok { color: #10b981; }
+        .steps { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 15px; text-align: left; font-size: 13px; color: rgba(255,255,255,0.5); }
+        .steps ol { padding-left: 18px; line-height: 2; }
+        .back { font-size: 12px; color: rgba(255,255,255,0.3); cursor: pointer; text-decoration: underline; margin-top: 15px; display: block; text-align: center; }
+        #success-box { display: none; text-align: center; }
+        #success-box .emoji { font-size: 50px; margin-bottom: 15px; }
+        #success-box h2 { color: #d4af6a; font-size: 22px; margin-bottom: 10px; }
+        #success-box p { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
+        .link-back { color: #b8963e; font-size: 13px; text-decoration: none; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="badge">🧪 Chế độ TEST</div>
+
+    <!-- FORM -->
+    <div id="form-view">
+        <h1>Giao Dịch Thử Nghiệm</h1>
+        <p class="sub">Dùng để test luồng SePay. Số tiền thật: 2.000đ.</p>
+        <div class="amount-box">
+            <div class="amount-label">Số tiền test</div>
+            <div class="amount-value">2.000đ</div>
+        </div>
+        <label>Tên</label>
+        <input id="tName" type="text" placeholder="Tên của bạn" value="Test User">
+        <label>Số điện thoại</label>
+        <input id="tPhone" type="text" placeholder="SĐT" value="0123456789">
+        <button id="genBtn" onclick="doGenQR()">
+            <i class="fas fa-qrcode"></i> Tạo QR Test 2.000đ
+        </button>
+    </div>
+
+    <!-- QR -->
+    <div id="qr-view">
+        <h1>Quét QR Thanh Toán</h1>
+        <div class="order-tag">Mã đơn: <strong id="show-code" style="color:white; font-family:monospace">—</strong></div>
+        <div class="order-tag" style="margin-bottom:5px">Số tiền: <strong style="color:#d4af6a">2.000đ</strong></div>
+        <div class="qr-box"><img id="qr-img" src="" alt="QR"></div>
+        <div class="status" id="st-msg">
+            <i class="fas fa-spinner fa-spin"></i> Đang chờ thanh toán...
+        </div>
+        <div class="steps">
+            <strong>Hướng dẫn:</strong>
+            <ol>
+                <li>Mở app ngân hàng → Quét QR</li>
+                <li>Xác nhận số tiền 2.000đ</li>
+                <li>Chuyển khoản → Đợi hệ thống xác nhận</li>
+            </ol>
+        </div>
+        <a class="back" onclick="resetForm()">← Nhập lại thông tin</a>
+    </div>
+
+    <!-- SUCCESS -->
+    <div id="success-box">
+        <div class="emoji">🎉</div>
+        <h2>Test Thành Công!</h2>
+        <p>Hệ thống đã nhận được tín hiệu thanh toán và tự động cập nhật trạng thái đơn hàng.<br><br>
+           <strong id="suc-code" style="color:#d4af6a"></strong>
+        </p>
+        <a href="/admin" class="link-back" target="_blank">→ Mở Admin Panel để kiểm tra</a>
+    </div>
+</div>
+
+<script>
+    const BANK  = '6686966869';
+    const BNAME = 'VPBank';
+    const AMT   = 2000;
+    const PRODID = 5; // [TEST] sản phẩm id=5
+
+    let pollTimer = null;
+    let orderCode = null;
+
+    async function doGenQR() {
+        const name  = document.getElementById('tName').value.trim();
+        const phone = document.getElementById('tPhone').value.trim();
+        if (!name || !phone) { alert('Điền đủ thông tin!'); return; }
+
+        const btn = document.getElementById('genBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang tạo...';
+
+        try {
+            const r = await fetch('/api/product-orders', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, phone, product_id: PRODID, amount: AMT })
+            });
+            const d = await r.json();
+            if (!d.success) throw new Error('fail');
+
+            orderCode = d.order_code;
+
+            const desc   = phone + ' ' + orderCode;
+            const qrUrl  = `https://qr.sepay.vn/img?acc=${BANK}&bank=${BNAME}&amount=${AMT}&des=${encodeURIComponent(desc)}`;
+
+            document.getElementById('show-code').textContent = orderCode;
+            document.getElementById('qr-img').src = qrUrl;
+
+            document.getElementById('form-view').style.display = 'none';
+            document.getElementById('qr-view').style.display   = 'block';
+
+            startPoll(name, orderCode);
+        } catch(e) {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-qrcode"></i> Tạo QR Test 2.000đ';
+            alert('Lỗi server!');
+        }
+    }
+
+    function startPoll(name, code) {
+        if (pollTimer) clearInterval(pollTimer);
+        pollTimer = setInterval(async () => {
+            try {
+                const r = await fetch(`/api/orders/check/${code}`);
+                const d = await r.json();
+                if (d.status === 'success') {
+                    clearInterval(pollTimer);
+                    document.getElementById('qr-view').style.display = 'none';
+                    document.getElementById('success-box').style.display = 'block';
+                    document.getElementById('suc-code').textContent = `Mã đơn: ${code} | Khách: ${name}`;
+                }
+            } catch(e) {}
+        }, 4000);
+    }
+
+    function resetForm() {
+        if (pollTimer) clearInterval(pollTimer);
+        document.getElementById('form-view').style.display = 'block';
+        document.getElementById('qr-view').style.display   = 'none';
+        document.getElementById('genBtn').disabled = false;
+        document.getElementById('genBtn').innerHTML = '<i class="fas fa-qrcode"></i> Tạo QR Test 2.000đ';
+    }
+</script>
+</body>
+</html>

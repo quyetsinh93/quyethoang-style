@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Minh Khang",
+    "phone": "0901234567",
+    "zalo": "https://zalo.me/0901234567",
+    "registration_date": "2026-04-15 08:30:00"
+  },
+  {
+    "name": "Tuấn Phong",
+    "phone": "0987654321",
+    "zalo": "https://zalo.me/0987654321",
+    "registration_date": "2026-04-18 15:45:00"
+  },
+  {
+    "name": "Hoàng Nam",
+    "phone": "0912341234",
+    "zalo": "https://zalo.me/0912341234",
+    "registration_date": "2026-04-19 10:15:00"
+  }
+]

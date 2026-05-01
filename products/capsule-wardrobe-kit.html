@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capsule Wardrobe Starter Kit: 20 Items Cốt Lõi Của Phái Mạnh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #b8963e;
+            --gold-light: #d4af6a;
+            --dark: #1a1a1a;
+            --darker: #0f0f0f;
+            --text: #2c2c2c;
+            --light-bg: #faf9f7;
+            --border: #e8e0d0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #f0ede8;
+            color: var(--text);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .page {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 40px rgba(0,0,0,0.15);
+        }
+
+        /* === COVER === */
+        .cover {
+            background: var(--darker);
+            color: white;
+            padding: 70px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .cover-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .paid-badge {
+            background: var(--gold);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 5px 14px;
+            border-radius: 2px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .price-tag {
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .price-tag strong {
+            color: var(--gold-light);
+            font-size: 16px;
+        }
+
+        .cover h1 {
+            font-size: 40px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 15px;
+        }
+
+        .cover h1 .highlight {
+            color: var(--gold-light);
+            display: block;
+        }
+
+        .cover-sub {
+            font-size: 16px;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 50px;
+            max-width: 480px;
+            font-weight: 300;
+        }
+
+        .cover-promise {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 20px 25px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .promise-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .promise-item .icon {
+            color: var(--gold-light);
+            font-size: 16px;
+        }
+
+        /* === ALL SECTIONS === */
+        .section {
+            padding: 50px 60px;
+        }
+
+        .section + .section {
+            border-top: 1px solid var(--border);
+        }
+
+        .section-tag {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .section-intro {
+            color: #555;
+            margin-bottom: 35px;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        /* === CATEGORY BLOCKS === */
+        .category {
+            margin-bottom: 40px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .category-icon {
+            width: 42px; height: 42px;
+            background: var(--dark);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .category-count {
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: 600;
+            margin-left: auto;
+            background: rgba(184, 150, 62, 0.1);
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        /* === ITEM CARDS === */
+        .items-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .item-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 18px 20px;
+            background: var(--light-bg);
+            position: relative;
+            transition: border-color 0.2s;
+        }
+
+        .item-card.priority::before {
+            content: '★ CORE';
+            position: absolute;
+            top: 12px; right: 12px;
+            font-size: 9px;
+            letter-spacing: 1px;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .item-number {
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .item-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+
+        .item-desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .item-meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .meta-chip {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .chip-color {
+            background: rgba(0,0,0,0.04);
+            border: 1px solid #ddd;
+            color: #555;
+        }
+
+        .chip-budget {
+            background: rgba(184, 150, 62, 0.08);
+            border: 1px solid rgba(184, 150, 62, 0.2);
+            color: #7a5c10;
+        }
+
+        .item-tip {
+            font-size: 12px;
+            color: #888;
+            font-style: italic;
+            border-top: 1px dashed var(--border);
+            padding-top: 8px;
+            margin-top: 5px;
+        }
+
+        /* === OUTFIT COMBOS === */
+        .dark-section {
+            background: var(--dark);
+            color: white;
+            padding: 50px 60px;
+        }
+
+        .dark-section .section-title {
+            color: white;
+        }
+
+        .dark-section .section-intro {
+            color: rgba(255,255,255,0.55);
+        }
+
+        .combo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .combo-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .combo-occasion {
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .combo-name {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .combo-items {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .combo-item {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .combo-item::before {
+            content: '→';
+            color: var(--gold);
+        }
+
+        /* === SHOPPING GUIDE === */
+        .shopping-section {
+            background: var(--light-bg);
+            padding: 50px 60px;
+        }
+
+        .shop-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .shop-table th {
+            text-align: left;
+            padding: 12px 15px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 700;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .shop-table td {
+            padding: 12px 15px;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border);
+            color: #444;
+        }
+
+        .shop-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .shop-table td:first-child {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .budget-low { color: var(--success, #15803d); font-weight: 600; }
+        .budget-mid { color: var(--gold); font-weight: 600; }
+        .budget-high { color: #b45309; font-weight: 600; }
+
+        /* === CHECKLIST === */
+        .checklist-section {
+            padding: 50px 60px;
+        }
+
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 15px;
+            background: var(--light-bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .checkbox {
+            width: 20px; height: 20px;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .check-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .check-cat {
+            font-size: 11px;
+            color: #999;
+        }
+
+        /* === CTA FINAL === */
+        .cta-final {
+            background: linear-gradient(135deg, var(--darker) 0%, #1e1a12 100%);
+            padding: 60px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 200px; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .cta-final h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .cta-final h2 span {
+            color: var(--gold-light);
+        }
+
+        .cta-final p {
+            color: rgba(255,255,255,0.55);
+            font-size: 15px;
+            max-width: 450px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--gold);
+            color: #111;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 16px 40px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--darker);
+            color: rgba(255,255,255,0.25);
+            font-size: 12px;
+        }
+
+        @media print {
+            body { background: white; }
+            .page { box-shadow: none; }
+            .item-card { page-break-inside: avoid; }
+            .combo-card { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- COVER -->
+    <div class="cover">
+        <div class="cover-eyebrow">
+            <span class="paid-badge">Tài liệu trả phí</span>
+            <span class="price-tag">Giá: <strong>199.000đ</strong></span>
+        </div>
+        <h1>Capsule Wardrobe<br>Starter Kit<br><span class="highlight">20 Items Cốt Lõi</span></h1>
+        <p class="cover-sub">Mua đúng 20 thứ này — bạn có thể phối được hơn 50 bộ khác nhau cho mọi dịp: từ đi làm đến gặp đối tác, từ cafe cuối tuần đến tiệc tối.</p>
+        <div class="cover-promise">
+            <div class="promise-item"><span class="icon">✓</span> Danh sách cụ thể, không mơ hồ</div>
+            <div class="promise-item"><span class="icon">✓</span> Kèm hướng dẫn mua sắm theo ngân sách</div>
+            <div class="promise-item"><span class="icon">✓</span> 50+ công thức phối từ 20 items</div>
+            <div class="promise-item"><span class="icon">✓</span> Checklist in ra dùng ngay</div>
+        </div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="section">
+        <div class="section-tag">Lý do bạn cần tài liệu này</div>
+        <div class="section-title">Vấn đề nằm ở chỗ này</div>
+        <p class="section-intro">
+            Phần lớn đàn ông chi khá nhiều tiền cho quần áo — nhưng vẫn cảm thấy không có gì để mặc. Lý do thật ra đơn giản: <strong>mua sai từ đầu, thiếu nền tảng.</strong>
+        </p>
+        <p class="section-intro">
+            Capsule Wardrobe không phải là mặc ít hay mặc "tối giản kiểu Nhật." Đây là chiến lược xây dựng tủ đồ bắt đầu từ những món nền tảng — linh hoạt, bền vững, phối được với nhau theo nhiều cách. Mua đúng 20 items này, bạn sẽ không còn đứng trước tủ đồ đầy mà thấy trống rỗng nữa.
+        </p>
+    </div>
+
+    <!-- CATEGORY 1: TOPS -->
+    <div class="section">
+        <div class="section-tag">Phần 1 / 4 · Áo</div>
+        <div class="section-title">8 Items Áo Cốt Lõi</div>
+
+        <div class="items-grid">
+            <div class="item-card priority">
+                <div class="item-number">#01</div>
+                <div class="item-name">Áo Sơ Mi Trắng Trơn</div>
+                <div class="item-desc">Không thể thiếu. Đây là nền tảng của mọi tủ đồ dân văn phòng. Chọn loại vải cotton hoặc Oxford, cổ button-down.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Trắng thuần</span>
+                    <span class="meta-chip chip-budget">200–500k</span>
+                </div>
+                <p class="item-tip">Mua 2, luôn có cái sạch để dùng. Ưu tiên loại không nhăn.</p>
+            </div>
+
+            <div class="item-card priority">
+                <div class="item-number">#02</div>
+                <div class="item-name">Áo Sơ Mi Xanh Nhạt (Chambray)</div>
+                <div class="item-desc">Phiên bản "người anh" của áo trắng — dễ chịu hơn, bớt formal hơn nhưng vẫn nhìn gọn gàng và chuyên nghiệp.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Xanh nhạt / Chambray</span>
+                    <span class="meta-chip chip-budget">250–600k</span>
+                </div>
+                <p class="item-tip">Để trong quần khi đi làm, để ngoài quần khi cuối tuần — cùng một cái.</p>
+            </div>
+
+            <div class="item-card">
+                <div class="item-number">#03</div>
+                <div class="item-name">Áo Thun Basic Trắng (Cổ Tròn)</div>
+                <div class="item-desc">Đơn giản nhất, đa năng nhất. Mặc một mình, mặc trong áo khoác, mặc dưới sơ mi bỏ vô... đều ổn cả.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Trắng</span>
+                    <span class="meta-chip chip-budget">100–300k</span>
+                </div>
+                <p class="item-tip">Mua 3 cái. Thay mới khi thấy ngả màu hoặc xỉn.</p>
+            </div>
+
+            <div class="item-card">
+                <div class="item-number">#04</div>
+                <div class="item-name">Áo Thun Basic Xám / Navy (Cổ Tròn)</div>
+                <div class="item-desc">Phiên bản màu tối hơn của #03. Phối với mọi loại quần, giảm thiểu cảm giác "quá casual" khi cần.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Xám trung hoặc Navy</span>
+                    <span class="meta-chip chip-budget">100–300k</span>
+                </div>
+                <p class="item-tip">Chọn xám trung để linh hoạt hơn. Navy cho ai thích Navy.</p>
+            </div>
+
+            <div class="item-card priority">
+                <div class="item-number">#05</div>
+                <div class="item-name">Polo Shirt Navy hoặc Xanh Đậm</div>
+                <div class="item-desc">Vũ khí bí mật dân văn phòng hiện đại. Đứng giữa áo thun và sơ mi — không cứng nhắc, không bạt mạng.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Navy / Xanh đậm</span>
+                    <span class="meta-chip chip-budget">300–700k</span>
+                </div>
+                <p class="item-tip">Chọn Polo vải Pique, dày dặn. Tránh loại cotton mỏng dễ xắn lên.</p>
+            </div>
+
+            <div class="item-card">
+                <div class="item-number">#06</div>
+                <div class="item-name">Áo Khoác Mỏng (Lightweight Overshirt)</div>
+                <div class="item-desc">Áo sơ mi dày hơn, dùng như áo khoác nhẹ. Xanh rêu, nâu đất, hoặc kẻ carô nhỏ — tất cả đều hay.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Xanh rêu / Nâu đất</span>
+                    <span class="meta-chip chip-budget">400–900k</span>
+                </div>
+                <p class="item-tip">Để ngoài áo thun, cổ áo mở ra. Weekend look hoàn hảo.</p>
+            </div>
+
+            <div class="item-card priority">
+                <div class="item-number">#07</div>
+                <div class="item-name">Blazer Xám Nhạt / Xanh Navy</div>
+                <div class="item-desc">Chiếc "áo khoác thần thánh" — chỉ cần thêm cái này vào BẤT KỲ bộ đồ nào, trông ngay lập tức chỉn chu hơn 3 bậc.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Xám Nhạt hoặc Navy</span>
+                    <span class="meta-chip chip-budget">800k–2tr</span>
+                </div>
+                <p class="item-tip">Đây là item nên đầu tư một lần. Tránh loại blazer kẻ sọc hay pattern phức tạp.</p>
+            </div>
+
+            <div class="item-card">
+                <div class="item-number">#08</div>
+                <div class="item-name">Áo Len Mỏng (Crewneck Sweater)</div>
+                <div class="item-desc">Khi trời mát hoặc điều hòa quá lạnh, áo len cổ tròn phủ lên áo sơ mi trắng là combo cực elegant và ấm áp.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Xám / Be / Navy</span>
+                    <span class="meta-chip chip-budget">400–1tr</span>
+                </div>
+                <p class="item-tip">Mua loại merino wool nếu có thể — không ngứa, thoáng và đẹp hơn len thông thường.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CATEGORY 2: BOTTOMS -->
+    <div class="section" style="background: var(--light-bg);">
+        <div class="section-tag">Phần 2 / 4 · Quần</div>
+        <div class="section-title">6 Items Quần Cốt Lõi</div>
+
+        <div class="items-grid">
+            <div class="item-card priority">
+                <div class="item-number">#09</div>
+                <div class="item-name">Quần Âu Xám Trung (Slim/Straight)</div>
+                <div class="item-desc">Quần âu xám là nền tảng bất biến. Phối với gần như bất kỳ áo gì: trắng, navy, xanh nhạt, polo... tất cả đều ổn.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Xám trung hoặc xám nhạt</span>
+                    <span class="meta-chip chip-budget">400–1tr</span>
+                </div>
+                <p class="item-tip">Chọn slim fit hoặc straight cut, không quá ôm. Gấu quần vừa vặn, không chạm sàn.</p>
+            </div>
+
+            <div class="item-card priority">
+                <div class="item-number">#10</div>
+                <div class="item-name">Quần Âu Đen (Slim Fit)</div>
+                <div class="item-desc">Phiên bản mạnh mẽ, tối tăm hơn. Phối với áo trắng và giày Oxford đen là combo kinh điển bất bại mọi thời đại.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Đen thuần</span>
+                    <span class="meta-chip chip-budget">400–1tr</span>
+                </div>
+                <p class="item-tip">Kết hợp được cùng blazer để nâng cấp bộ đồ lên formal bất cứ lúc nào cần.</p>
+            </div>
+
+            <div class="item-card">
+                <div class="item-number">#11</div>
+                <div class="item-name">Chino Be / Camel (Slim)</div>
+                <div class="item-desc">Màu be là màu "ấm" giúp phong cách nhẹ nhàng và thân thiện hơn, hữu ích khi không muốn trông quá cứng nhắc.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Be / Camel / Kem</span>
+                    <span class="meta-chip chip-budget">300–700k</span>
+                </div>
+                <p class="item-tip">Ăn khớp cực tốt với áo Navy Polo hoặc áo thun xám.</p>
+            </div>
+
+            <div class="item-card">
+                <div class="item-number">#12</div>
+                <div class="item-name">Jeans Xanh Trung (Classic Straight)</div>
+                <div class="item-desc">Không có jeans rách, không có jeans skinny quá bó. Jeans dark-mid wash cắt straight là phiên bản không bao giờ lỗi.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Xanh trung (mid-wash)</span>
+                    <span class="meta-chip chip-budget">400–900k</span>
+                </div>
+                <p class="item-tip">Đây là loại quần casual nhất trong list. Chỉ mặc khi không có cuộc họp quan trọng.</p>
+            </div>
+
+            <div class="item-card">
+                <div class="item-number">#13</div>
+                <div class="item-name">Chino Xanh Navy (Slim)</div>
+                <div class="item-desc">Phiên bản navy của chino — kết hợp cả tính năng của quần âu và chino thông thường, phù hợp nhiều dịp hơn.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Navy đậm</span>
+                    <span class="meta-chip chip-budget">300–700k</span>
+                </div>
+                <p class="item-tip">Mặc cùng áo trắng và giày trắng vào cuối tuần — clean và tươi mà không cần cố.</p>
+            </div>
+
+            <div class="item-card">
+                <div class="item-number">#14</div>
+                <div class="item-name">Shorts Chino (Tối màu)</div>
+                <div class="item-desc">Cho những ngày cuối tuần, dã ngoại, đi chơi hè. Chọn loại mid-length (xuống gối 3–4cm) — không quá ngắn, không quá dài.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Xanh navy / Xám / Đen</span>
+                    <span class="meta-chip chip-budget">200–500k</span>
+                </div>
+                <p class="item-tip">Shorts ngắn quá trông thiếu chín chắn. Dài quá trông như đang mặc quần bộ.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CATEGORY 3 + 4: SHOES & ACCESSORIES -->
+    <div class="section">
+        <div class="section-tag">Phần 3 & 4 · Giày + Phụ Kiện</div>
+        <div class="section-title">6 Items Giày & Phụ Kiện Hoàn Thiện</div>
+
+        <div class="items-grid">
+            <div class="item-card priority">
+                <div class="item-number">#15</div>
+                <div class="item-name">Giày Da Oxford / Derby (Đen)</div>
+                <div class="item-desc">Đây là "giày sự nghiệp." Khi đi chân giày đen da bóng, cả bộ đồ ngay lập tức nâng lên một tầm. Không thể thiếu.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Đen bóng</span>
+                    <span class="meta-chip chip-budget">600k–2tr</span>
+                </div>
+                <p class="item-tip">Đây là item đáng đầu tư nhất. Giày da tốt một đôi hơn ba đôi rẻ tiền.</p>
+            </div>
+
+            <div class="item-card">
+                <div class="item-number">#16</div>
+                <div class="item-name">Giày Da Derby / Loafer (Nâu)</div>
+                <div class="item-desc">Phiên bản ấm hơn, thân thiện hơn của giày đen. Phối với be, xám hay navy đều rất ổn — không cứng nhắc bằng đen.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Nâu tan / Cognac</span>
+                    <span class="meta-chip chip-budget">500k–1.5tr</span>
+                </div>
+                <p class="item-tip">Nâu tan (tan) đa năng hơn nâu sẫm. Có thể cùng thắt lưng nâu đồng bộ.</p>
+            </div>
+
+            <div class="item-card priority">
+                <div class="item-number">#17</div>
+                <div class="item-name">Sneaker Trắng Clean (Low-top)</div>
+                <div class="item-desc">Vua của casual footwear. Stan Smith, Air Force 1, hay bất kỳ sneaker trắng đơn giản nào — tất cả đều phối được với chino và jeans.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Màu: Trắng (sole trắng)</span>
+                    <span class="meta-chip chip-budget">400k–2tr</span>
+                </div>
+                <p class="item-tip">Giữ sạch là quan trọng nhất. Sneaker trắng bẩn phá hỏng cả bộ đồ.</p>
+            </div>
+
+            <div class="item-card">
+                <div class="item-number">#18</div>
+                <div class="item-name">Thắt Lưng Da Đen + Nâu</div>
+                <div class="item-desc">Nguyên tắc cơ bản: màu thắt lưng phải match màu giày. Có 2 cái (đen + nâu) là đủ dùng cho toàn bộ tủ đồ này.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Đen + Nâu</span>
+                    <span class="meta-chip chip-budget">200–600k / cái</span>
+                </div>
+                <p class="item-tip">Đừng mang thắt lưng nâu với giày đen. Đây là lỗi sai phổ biến nhất.</p>
+            </div>
+
+            <div class="item-card">
+                <div class="item-number">#19</div>
+                <div class="item-name">Đồng Hồ Dây Da Đơn Giản</div>
+                <div class="item-desc">Không cần xịn. Cần clean. Mặt tròn, dây da nâu hoặc đen, số La Mã hoặc không số — cả hai đều chuẩn kinh điển.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Dây: Nâu / Đen · Mặt: Trắng hoặc Đen</span>
+                    <span class="meta-chip chip-budget">500k–5tr</span>
+                </div>
+                <p class="item-tip">Đồng hồ to bự + tay nhỏ = mất cân đối. Chọn mặt đồng hồ tương xứng cổ tay.</p>
+            </div>
+
+            <div class="item-card">
+                <div class="item-number">#20</div>
+                <div class="item-name">Kính Mát Khung Gọng Mỏng</div>
+                <div class="item-desc">Hoàn thiện bức tranh. Khung tròn hay chữ nhật nhỏ với tông nâu/đen/tortoise shell — thêm depth cho khuôn mặt và nhìn có style hơn hẳn.</div>
+                <div class="item-meta">
+                    <span class="meta-chip chip-color">Gọng: Nâu / Đen / Tortoise</span>
+                    <span class="meta-chip chip-budget">200k–1.5tr</span>
+                </div>
+                <p class="item-tip">Kính mát không cần xuất xứ cao cấp — chỉ cần vừa mặt và gọng đơn giản là đủ.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMBOS FROM 20 ITEMS -->
+    <div class="dark-section">
+        <div class="section-tag" style="color: var(--gold-light);">Ứng dụng thực tế</div>
+        <div class="section-title">10 Combo Phối Từ 20 Items Trên</div>
+        <p class="section-intro">Đây là bằng chứng 20 items này đủ cho hơn 50 bộ. Dưới đây chỉ là 10 ví dụ bắt đầu:</p>
+
+        <div class="combo-grid">
+            <div class="combo-card">
+                <div class="combo-occasion">Họp quan trọng / Pitch</div>
+                <div class="combo-name">Power Classic</div>
+                <div class="combo-items">
+                    <div class="combo-item">Sơ mi trắng (#01)</div>
+                    <div class="combo-item">Quần âu đen (#10)</div>
+                    <div class="combo-item">Giày Oxford đen (#15)</div>
+                    <div class="combo-item">Thắt lưng đen (#18)</div>
+                </div>
+            </div>
+
+            <div class="combo-card">
+                <div class="combo-occasion">Văn phòng thứ 2-5</div>
+                <div class="combo-name">Office Elevated</div>
+                <div class="combo-items">
+                    <div class="combo-item">Polo Navy (#05)</div>
+                    <div class="combo-item">Quần âu xám (#09)</div>
+                    <div class="combo-item">Giày Derby nâu (#16)</div>
+                    <div class="combo-item">Đồng hồ dây da (#19)</div>
+                </div>
+            </div>
+
+            <div class="combo-card">
+                <div class="combo-occasion">Gặp Khách Hàng</div>
+                <div class="combo-name">Business Friendly</div>
+                <div class="combo-items">
+                    <div class="combo-item">Sơ mi xanh nhạt (#02)</div>
+                    <div class="combo-item">Chino Be (#11)</div>
+                    <div class="combo-item">Loafer nâu (#16)</div>
+                    <div class="combo-item">Không thắt lưng — Blazer (#07)</div>
+                </div>
+            </div>
+
+            <div class="combo-card">
+                <div class="combo-occasion">Thứ 6 Casual</div>
+                <div class="combo-name">Smart Weekend</div>
+                <div class="combo-items">
+                    <div class="combo-item">Overshirt xanh rêu (#06)</div>
+                    <div class="combo-item">Chino Navy (#13)</div>
+                    <div class="combo-item">Sneaker trắng (#17)</div>
+                </div>
+            </div>
+
+            <div class="combo-card">
+                <div class="combo-occasion">Cuối Tuần Cafe / Đi Chơi</div>
+                <div class="combo-name">Clean Weekend</div>
+                <div class="combo-items">
+                    <div class="combo-item">Áo thun trắng (#03)</div>
+                    <div class="combo-item">Jeans xanh (#12)</div>
+                    <div class="combo-item">Sneaker trắng (#17)</div>
+                    <div class="combo-item">Kính mát (#20)</div>
+                </div>
+            </div>
+
+            <div class="combo-card">
+                <div class="combo-occasion">Tiệc Tối / Event</div>
+                <div class="combo-name">Evening Smart</div>
+                <div class="combo-items">
+                    <div class="combo-item">Áo len xám (#08)</div>
+                    <div class="combo-item">Quần âu đen (#10)</div>
+                    <div class="combo-item">Giày Oxford đen (#15)</div>
+                    <div class="combo-item">Đồng hồ (#19)</div>
+                </div>
+            </div>
+
+            <div class="combo-card">
+                <div class="combo-occasion">Presentation / Sự kiện</div>
+                <div class="combo-name">Blazer Stack</div>
+                <div class="combo-items">
+                    <div class="combo-item">Áo thun xám (#04)</div>
+                    <div class="combo-item">Quần âu xám #09</div>
+                    <div class="combo-item">Blazer Navy (#07)</div>
+                    <div class="combo-item">Giày đen (#15)</div>
+                </div>
+            </div>
+
+            <div class="combo-card">
+                <div class="combo-occasion">Trời Mát / Trikking</div>
+                <div class="combo-name">Layer Up</div>
+                <div class="combo-items">
+                    <div class="combo-item">Sơ mi trắng (#01) bên trong</div>
+                    <div class="combo-item">Áo len Navy bên ngoài (#08)</div>
+                    <div class="combo-item">Chino be (#11)</div>
+                    <div class="combo-item">Derby nâu (#16)</div>
+                </div>
+            </div>
+
+            <div class="combo-card">
+                <div class="combo-occasion">Cà Phê Sáng Thứ 7</div>
+                <div class="combo-name">Low-key Sharp</div>
+                <div class="combo-items">
+                    <div class="combo-item">Polo Navy (#05)</div>
+                    <div class="combo-item">Shorts Chino (#14)</div>
+                    <div class="combo-item">Sneaker trắng (#17)</div>
+                    <div class="combo-item">Kính mát (#20)</div>
+                </div>
+            </div>
+
+            <div class="combo-card">
+                <div class="combo-occasion">Đi Nhà Hàng Gia Đình</div>
+                <div class="combo-name">Relaxed Polished</div>
+                <div class="combo-items">
+                    <div class="combo-item">Henley / Áo thun kem (#03)</div>
+                    <div class="combo-item">Chino Navy (#13)</div>
+                    <div class="combo-item">Loafer nâu (#16)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHOPPING GUIDE -->
+    <div class="shopping-section">
+        <div class="section-tag">Mua sắm theo ngân sách</div>
+        <div class="section-title">Gợi Ý Thương Hiệu Theo Tầm Tiền</div>
+        <p class="section-intro" style="margin-bottom: 25px;">Không cần phải mua hết một lúc — ưu tiên mua những item có đánh dấu ★ CORE trước, rồi bổ sung dần.</p>
+
+        <table class="shop-table">
+            <thead>
+                <tr>
+                    <th>Hạng Mục</th>
+                    <th>Tầm Thấp (Bình dân)</th>
+                    <th>Tầm Trung (Đáng tiền)</th>
+                    <th>Tầm Cao (Đầu tư)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Áo Sơ Mi</td>
+                    <td class="budget-low">Uniqlo · 300–500k</td>
+                    <td class="budget-mid">COS · 700k–1.2tr</td>
+                    <td class="budget-high">Charles Tyrwhitt · 1.5tr+</td>
+                </tr>
+                <tr>
+                    <td>Áo Thun / Polo</td>
+                    <td class="budget-low">Uniqlo · 150–350k</td>
+                    <td class="budget-mid">MOI · 300–600k</td>
+                    <td class="budget-high">Polo Ralph Lauren · 1tr+</td>
+                </tr>
+                <tr>
+                    <td>Blazer</td>
+                    <td class="budget-low">Zara · 800k–1.5tr</td>
+                    <td class="budget-mid">COS · 1.5–2.5tr</td>
+                    <td class="budget-high">Suitsupply · 3tr+</td>
+                </tr>
+                <tr>
+                    <td>Quần Âu / Chino</td>
+                    <td class="budget-low">Ground Zero · 300–500k</td>
+                    <td class="budget-mid">Banana Republic · 700k+</td>
+                    <td class="budget-high">Boggi Milano · 1.5tr+</td>
+                </tr>
+                <tr>
+                    <td>Giày Da</td>
+                    <td class="budget-low">Aldo · 600k–1tr</td>
+                    <td class="budget-mid">Thursday Boots · 1.5–2tr</td>
+                    <td class="budget-high">Magnanni · 3tr+</td>
+                </tr>
+                <tr>
+                    <td>Sneaker</td>
+                    <td class="budget-low">Converse Chuck Taylor · 700k</td>
+                    <td class="budget-mid">Adidas Stan Smith · 1.2tr</td>
+                    <td class="budget-high">Common Projects · 4tr+</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- CHECKLIST -->
+    <div class="checklist-section">
+        <div class="section-tag">In ra và check từng item</div>
+        <div class="section-title">Checklist 20 Items — Tick Khi Đã Mua Xong</div>
+        <div class="checklist-grid">
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Sơ mi Trắng Trơn</div><div class="check-cat">Áo · #01</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Sơ mi Xanh Nhạt</div><div class="check-cat">Áo · #02</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Áo Thun Trắng</div><div class="check-cat">Áo · #03</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Áo Thun Xám / Navy</div><div class="check-cat">Áo · #04</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Polo Navy</div><div class="check-cat">Áo · #05</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Overshirt / Áo Khoác Mỏng</div><div class="check-cat">Áo · #06</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Blazer Xám hoặc Navy</div><div class="check-cat">Áo · #07</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Áo Len Cổ Tròn</div><div class="check-cat">Áo · #08</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Quần Âu Xám</div><div class="check-cat">Quần · #09</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Quần Âu Đen</div><div class="check-cat">Quần · #10</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Chino Be / Camel</div><div class="check-cat">Quần · #11</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Jeans Xanh Trung</div><div class="check-cat">Quần · #12</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Chino Navy</div><div class="check-cat">Quần · #13</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Shorts Chino</div><div class="check-cat">Quần · #14</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Giày Oxford / Derby Đen</div><div class="check-cat">Giày · #15</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Giày Derby / Loafer Nâu</div><div class="check-cat">Giày · #16</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Sneaker Trắng</div><div class="check-cat">Giày · #17</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Thắt Lưng Đen + Nâu</div><div class="check-cat">PK · #18</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Đồng Hồ Dây Da</div><div class="check-cat">PK · #19</div></div></div>
+            <div class="check-item"><div class="checkbox"></div><div><div class="check-name">Kính Mát Gọng Mỏng</div><div class="check-cat">PK · #20</div></div></div>
+        </div>
+    </div>
+
+    <!-- FINAL CTA -->
+    <div class="cta-final">
+        <h2>Muốn Có Người <span>Đồng Hành Cùng Bạn</span>?</h2>
+        <p>Biết danh sách là một chuyện. Mua đúng với dáng người, màu da và phong cách riêng của bạn lại là chuyện khác. Tôi làm điều đó 1-on-1 với bạn.</p>
+        <a href="#" class="cta-btn">Đăng Ký Tư Vấn Style 1-on-1</a>
+    </div>
+
+    <div class="footer">© Quyet Hoang Personal Style Consultant · 199.000đ · Bản quyền thuộc về tác giả.</div>
+
+</div>
+</body>
+</html>

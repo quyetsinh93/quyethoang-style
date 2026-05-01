@@ -1,0 +1,25 @@
+[Unit]
+Description=PowerShell Backend Server for Website
+After=network.target
+
+[Service]
+# Start the PowerShell script
+ExecStart=/usr/bin/pwsh -NoProfile -ExecutionPolicy Bypass -File /var/www/website/server.ps1
+
+# Restart policy
+Restart=always
+RestartSec=3
+
+# Set the working directory to where the script is
+WorkingDirectory=/var/www/website
+
+# Set environment variables if needed (can also use EnvironmentFile)
+# EnvironmentFile=/var/www/website/.env
+# Replace the path above with your actual deployment folder path
+
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=ps-website
+
+[Install]
+WantedBy=multi-user.target
