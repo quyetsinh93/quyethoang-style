@@ -14,7 +14,7 @@ if (Test-Path $envFile) {
 $port = if ($env:PORT) { [int]$env:PORT } else { 8081 }
 
 $listener = New-Object System.Net.HttpListener
-$listener.Prefixes.Add("http://localhost:$port/")
+$listener.Prefixes.Add("http://*:$port/")
 
 try {
     $listener.Start()

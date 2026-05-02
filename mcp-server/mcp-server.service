@@ -1,0 +1,17 @@
+[Unit]
+Description=Website MCP Server (Node.js)
+After=network.target mywebsite.service
+
+[Service]
+ExecStart=/usr/bin/node /opt/my-website/mcp-server/index.js
+Restart=always
+RestartSec=5
+WorkingDirectory=/opt/my-website/mcp-server
+Environment=DB_PATH=/opt/my-website/brain.db
+Environment=MCP_PORT=3100
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=mcp-server
+
+[Install]
+WantedBy=multi-user.target
